@@ -22,6 +22,8 @@ def grey_code(length, bit_limit):
         result.append("".join(grey))
     return result
 
+def check_binary(value):
+    return int(value,2)
 
 intial_stg_1_list = [] #Intial Stage 1 list containing the min term value
 
@@ -69,9 +71,22 @@ print(main_matrix_list)
 row_binary_length = row
 col_binary_length = col
 
+#Creating a list of row and colum for corresponding grey code and bit length respectively
+
 list_of_row_grey_code_seq = grey_code(pow(2,row), row_binary_length)
 print(f"List of Grey Code row : {list_of_row_grey_code_seq}")
 
 list_of_col_grey_code_seq = grey_code(pow(2,col), col_binary_length)
-print(f"List of ")
+print(f"List of Grey Code Col : {list_of_col_grey_code_seq}")
 
+#Filling the main matrix list with the curresponding greycode row and colm value
+
+for i in range(len(list_of_row_grey_code_seq)):
+    for j in range(len(list_of_col_grey_code_seq)):
+        #We check the corresponging value 2d matrix index of greycode then check if that value exist in the initial stage matrix 
+        curresposnding_value_of_location = check_binary(list_of_row_grey_code_seq[i]+list_of_col_grey_code_seq[j])
+        if(curresposnding_value_of_location in intial_stg_1_list):
+            main_matrix_list[i][j] = 1
+
+
+print(main_matrix_list) # Completed the matrix appending with corresponding greycode value
