@@ -1,3 +1,4 @@
+import math
 
 def highest_power_limit_two_checker(max_value):
     x = 0
@@ -16,14 +17,16 @@ def grey_code(length, bit_limit):
         grey = [curresponding_binary[0]]
 
         for j in range(len(curresponding_binary) - 1):
-            xor_bit = int(curresponding_binary[j]) ^ int(curresponding_binary[j + 1])
+            xor_bit = int(curresponding_binary[j], 2) ^ int(curresponding_binary[j + 1], 2)
             grey.append(str(xor_bit))
 
         result.append("".join(grey))
     return result
 
-def check_binary(value):
+def check_binary(value): #converts to decimal
     return int(value,2)
+
+#STAGE1 - Arranging the values in the matrix
 
 intial_stg_1_list = [] #Intial Stage 1 list containing the min term value
 
@@ -49,7 +52,7 @@ col = 0
 row = 0
 
 if(highes_power_of_two_limit % 2 == 0):
-    row = highes_power_of_two_limit / 2
+    row = int(highes_power_of_two_limit / 2)
     col = row
 else:
     row = int(highes_power_of_two_limit / 2)
@@ -87,6 +90,14 @@ for i in range(len(list_of_row_grey_code_seq)):
         curresposnding_value_of_location = check_binary(list_of_row_grey_code_seq[i]+list_of_col_grey_code_seq[j])
         if(curresposnding_value_of_location in intial_stg_1_list):
             main_matrix_list[i][j] = 1
+            index_minterms.append([i,j])
 
 
-print(main_matrix_list) # Completed the matrix appending with corresponding greycode value
+print(index_minterms)
+print("______________________________________________________________________")
+
+#STAGE2 - Finding the coomon terms and grouping in accordance with the 2s power
+
+
+
+
